@@ -70,17 +70,32 @@ function setElementToModal() {
                     <span>Capacity: ${cardArray[i].capacity}</span>
                 </div>
                 <div class="text-white">
-                    <p class="mt-1">Fare: </p>
-                    <p class="mt-1">Tax: </p>
-                    <p class="mt-1">Fare: </p>
+                    <p class="mt-1">Fare: <span id="fare-count"></span></p>
+                    <p class="mt-1">Tax: <span id="tax-count"></span></p>
+                    <p class="mt-1">Total-cost: <span id="total-cost-count"></span></p>
                 </div>
                 <div class="flex justify-between mt-2">
-                    <input id="" class="border rounded-md p-1 w-1/3" type="text" name="" placeholder="Distance to travel">
-                    <input id="" class="border rounded-md p-1 w-1/3" type="text" name="" placeholder="How many vehicle">
-                    <button class="border border-green-400 text-green-400 w-1/4 px-3 py-1 rounded-md">Submit</button>
+                    <input id="distance" class="border rounded-md p-1 w-1/3" type="text" name="" placeholder="Koto kilo?">
+                    <input id="vehicles" class="border rounded-md p-1 w-1/3" type="text" name="" placeholder="Koyta gari?">
+                    <button id="submit-button" class="border border-green-400 text-green-400 w-1/4 px-3 py-1 rounded-md">Submit</button>
                 </div>
             </div>
         `
+
+
+
+
+
+        // Submit button onclick
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const distance = Number(document.getElementById('distance').value)
+            const vehicles = Number(document.getElementById('vehicles').value)
+            const fareCount = document.getElementById('fare-count')
+            // const taxCount = document.getElementById('tax-count')
+            // const totalCostCount = document.getElementById('total-cost-count')
+
+            fareCount.innerText = distance * vehicles * cardArray[i].farePerKilo
+        })
     }
 }
 
@@ -103,17 +118,11 @@ for (const modalBtn of modalBtns) {
         cardArray.push(newArray)
 
         setElementToModal()
-        console.log(event.target.parentNode.parentNode.children[1].children[2].children[1].children[0].innerText)
+
+
+
     })
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -125,3 +134,20 @@ document.getElementById('minimize-btn').addEventListener('click', function () {
     // To clean the card Array
     cardArray = []
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
